@@ -1,5 +1,5 @@
 /* ============================================================
-   BARBEARIA LP CLUB — script.js
+   BARBER PRIME CLUB — script.js
    ============================================================ */
 
 const WA_NUMBER = '5511996185751';
@@ -216,7 +216,7 @@ function openWhatsApp() {
   }
 
   const msg =
-    `Olá, vim pelo site da BARBEARIA LP CLUB.\n` +
+    `Olá, vim pelo site da BARBER PRIME CLUB.\n` +
     `Gostaria de agendar um horário.\n\n` +
     `Barbeiro escolhido: ${state.barber}\n` +
     `Serviço escolhido: ${state.service}\n` +
@@ -292,8 +292,8 @@ function smoothScrollTo(selector) {
   }
 
   function makeParticle() {
-    const teal  = Math.random() > 0.28;
-    const color = teal ? '#00C4CC' : '#ffffff';
+    const gold  = Math.random() > 0.28;
+    const color = gold ? '#FFB300' : '#ffffff';
     const r     = rand(innerR, outerR);
     return {
       angle  : rand(0, Math.PI * 2),
