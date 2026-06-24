@@ -65,18 +65,52 @@ document.querySelectorAll('.services-grid, .barbers-grid, .diff-grid').forEach(g
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
 /* ============================================================
+   SERVICE MODAL
+   ============================================================ */
+function openServiceModal() {
+  const overlay = document.getElementById('serviceModal');
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function _closeModal() {
+  const overlay = document.getElementById('serviceModal');
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeServiceModal(e) {
+  if (e.target === document.getElementById('serviceModal')) _closeModal();
+}
+
+function closeServiceModalBtn() {
+  _closeModal();
+}
+
+function selectServiceFromModal(service, price) {
+  document.getElementById('fServiceValue').value = service + '|' + price;
+  const btn  = document.getElementById('servicePickerBtn');
+  const span = document.getElementById('servicePickerText');
+  span.textContent = `${service} — ${price}`;
+  btn.classList.add('selected');
+
+  document.querySelectorAll('.sm-card').forEach(c => {
+    c.classList.toggle('active', c.dataset.service === service);
+  });
+
+  _closeModal();
+}
+
+/* Fechar com ESC */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') _closeModal();
+});
+
+/* ============================================================
    QUICK BOOK — clique no card pré-seleciona o serviço no form
    ============================================================ */
 function quickBook(service, price) {
-  const sel = document.getElementById('fService');
-  if (sel) {
-    for (const opt of sel.options) {
-      if (opt.value.startsWith(service + '|')) {
-        sel.value = opt.value;
-        break;
-      }
-    }
-  }
+  selectServiceFromModal(service, price);
   smoothScrollTo('#booking');
 }
 
@@ -86,7 +120,7 @@ function quickBook(service, price) {
 function submitBooking(e) {
   e.preventDefault();
 
-  const serviceRaw = document.getElementById('fService').value;
+  const serviceRaw = document.getElementById('fServiceValue').value;
   const dateVal    = document.getElementById('fDate').value;
   const timeVal    = document.getElementById('fTime').value;
   const name       = document.getElementById('fName').value.trim();
