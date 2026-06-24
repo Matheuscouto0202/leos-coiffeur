@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Léo's Coiffeur — Salão de beleza premium. Cortes, coloração, tratamentos e muito mais. Agende online agora.">
+  <meta name="description" content="Léo's Coiffeur — Salão de beleza premium. Cortes, coloração, tratamentos e muito mais. Agende pelo WhatsApp.">
   <title>Léo's Coiffeur | Salão de Beleza</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="shortcut icon" href="favicon.svg">
@@ -30,10 +30,8 @@
           <li><a href="#contact" class="nav-link">Contato</a></li>
         </ul>
       </nav>
-      <a href="https://coiffeurleos2.belasis.app/" class="btn btn-primary header-cta" target="_blank" rel="noopener">
-        Agendar online
-      </a>
-      <a href="https://coiffeurleos2.belasis.app/" class="mobile-header-agendar" aria-label="Agendar online" target="_blank" rel="noopener">
+      <a href="#booking" class="btn btn-primary header-cta">Agendar agora</a>
+      <a href="#booking" class="mobile-header-agendar" aria-label="Agendar">
         <i class="fas fa-calendar-check"></i>
       </a>
       <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
@@ -47,7 +45,7 @@
         <li><a href="#team" class="mobile-link">Equipe</a></li>
         <li><a href="#booking" class="mobile-link">Agendar</a></li>
         <li><a href="#contact" class="mobile-link">Contato</a></li>
-        <li><a href="https://coiffeurleos2.belasis.app/" class="btn btn-primary mobile-cta-btn" target="_blank" rel="noopener">Agendar online</a></li>
+        <li><a href="#booking" class="btn btn-primary mobile-cta-btn">Agendar agora</a></li>
       </ul>
     </div>
   </header>
@@ -77,9 +75,9 @@
             No Léo's Coiffeur, cada visita é uma experiência de transformação. Cabelos, coloração e tratamentos com o cuidado que você merece.
           </p>
           <div class="hero-btns reveal">
-            <a href="https://coiffeurleos2.belasis.app/" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
-              <i class="fas fa-calendar-check"></i>
-              Agendar online
+            <a href="#booking" class="btn btn-whatsapp btn-lg">
+              <i class="fab fa-whatsapp"></i>
+              Agendar pelo WhatsApp
             </a>
             <a href="#services" class="btn btn-ghost btn-lg">
               Ver serviços
@@ -147,7 +145,7 @@
             <div class="accent-bar"></div>
             <p class="about-p">O Léo's Coiffeur foi criado com um propósito único: transformar cada cliente com o cuidado e a atenção que eles merecem. Somos um salão de beleza comprometido com a excelência em cada detalhe.</p>
             <p class="about-p">Da coloração ao corte, da hidratação à escova, nossa equipe de especialistas utiliza os melhores produtos do mercado para realçar sua beleza natural com sofisticação e dedicação.</p>
-            <a href="https://coiffeurleos2.belasis.app/" class="btn btn-primary" target="_blank" rel="noopener">
+            <a href="#booking" class="btn btn-primary">
               <i class="fas fa-calendar-check"></i>
               Agendar meu horário
             </a>
@@ -166,91 +164,100 @@
         </div>
         <div class="services-grid">
 
-          <div class="svc-card reveal">
+          <!-- Preços: atualize conforme necessário -->
+          <div class="svc-card reveal" data-service="Corte feminino" data-price="R$ 60,00">
             <div class="svc-icon"><i class="fas fa-cut"></i></div>
             <div class="svc-body">
               <h3>Corte feminino</h3>
               <p>Corte personalizado para valorizar seus traços e estilo único, com técnica e precisão impecável.</p>
             </div>
             <div class="svc-foot">
-              <a href="https://coiffeurleos2.belasis.app/" class="svc-btn" target="_blank" rel="noopener">Agendar</a>
+              <span class="svc-price">R$ 60,00</span>
+              <button class="svc-btn" onclick="quickBook('Corte feminino','R$ 60,00')">Agendar</button>
             </div>
           </div>
 
-          <div class="svc-card reveal">
+          <div class="svc-card reveal" data-service="Corte masculino" data-price="R$ 45,00">
             <div class="svc-icon"><i class="fas fa-user-alt"></i></div>
             <div class="svc-body">
               <h3>Corte masculino</h3>
               <p>Do clássico ao moderno, cortes executados com maestria para cada perfil e personalidade.</p>
             </div>
             <div class="svc-foot">
-              <a href="https://coiffeurleos2.belasis.app/" class="svc-btn" target="_blank" rel="noopener">Agendar</a>
+              <span class="svc-price">R$ 45,00</span>
+              <button class="svc-btn" onclick="quickBook('Corte masculino','R$ 45,00')">Agendar</button>
             </div>
           </div>
 
-          <div class="svc-card reveal">
+          <div class="svc-card reveal" data-service="Coloração" data-price="R$ 150,00">
             <div class="svc-icon"><i class="fas fa-palette"></i></div>
             <div class="svc-body">
               <h3>Coloração</h3>
               <p>Transforme seu visual com coloração profissional e produtos de alta qualidade para um resultado vibrante e duradouro.</p>
             </div>
             <div class="svc-foot">
-              <a href="https://coiffeurleos2.belasis.app/" class="svc-btn" target="_blank" rel="noopener">Agendar</a>
+              <span class="svc-price">R$ 150,00</span>
+              <button class="svc-btn" onclick="quickBook('Coloração','R$ 150,00')">Agendar</button>
             </div>
           </div>
 
-          <div class="svc-card reveal">
+          <div class="svc-card reveal" data-service="Mechas & Balayage" data-price="R$ 200,00">
             <div class="svc-icon"><i class="fas fa-magic"></i></div>
             <div class="svc-body">
               <h3>Mechas & Balayage</h3>
               <p>Técnicas de iluminação que adicionam dimensão e movimento natural aos seus fios com efeito deslumbrante.</p>
             </div>
             <div class="svc-foot">
-              <a href="https://coiffeurleos2.belasis.app/" class="svc-btn" target="_blank" rel="noopener">Agendar</a>
+              <span class="svc-price">R$ 200,00</span>
+              <button class="svc-btn" onclick="quickBook('Mechas & Balayage','R$ 200,00')">Agendar</button>
             </div>
           </div>
 
-          <div class="svc-card reveal">
+          <div class="svc-card reveal" data-service="Escova progressiva" data-price="R$ 250,00">
             <div class="svc-icon"><i class="fas fa-wind"></i></div>
             <div class="svc-body">
               <h3>Escova progressiva</h3>
               <p>Fios lisos, brilhantes e sem frizz com durabilidade garantida. Resultado profissional de longa duração.</p>
             </div>
             <div class="svc-foot">
-              <a href="https://coiffeurleos2.belasis.app/" class="svc-btn" target="_blank" rel="noopener">Agendar</a>
+              <span class="svc-price">R$ 250,00</span>
+              <button class="svc-btn" onclick="quickBook('Escova progressiva','R$ 250,00')">Agendar</button>
             </div>
           </div>
 
-          <div class="svc-card reveal">
+          <div class="svc-card reveal" data-service="Hidratação capilar" data-price="R$ 80,00">
             <div class="svc-icon"><i class="fas fa-tint"></i></div>
             <div class="svc-body">
               <h3>Hidratação capilar</h3>
               <p>Tratamento intensivo para recuperar a saúde, a maciez e o brilho natural dos seus fios.</p>
             </div>
             <div class="svc-foot">
-              <a href="https://coiffeurleos2.belasis.app/" class="svc-btn" target="_blank" rel="noopener">Agendar</a>
+              <span class="svc-price">R$ 80,00</span>
+              <button class="svc-btn" onclick="quickBook('Hidratação capilar','R$ 80,00')">Agendar</button>
             </div>
           </div>
 
-          <div class="svc-card reveal">
+          <div class="svc-card reveal" data-service="Botox capilar" data-price="R$ 180,00">
             <div class="svc-icon"><i class="fas fa-gem"></i></div>
             <div class="svc-body">
               <h3>Botox capilar</h3>
               <p>Nutrição intensiva que sela e repara os fios, devolvendo vida, volume controlado e proteção duradoura.</p>
             </div>
             <div class="svc-foot">
-              <a href="https://coiffeurleos2.belasis.app/" class="svc-btn" target="_blank" rel="noopener">Agendar</a>
+              <span class="svc-price">R$ 180,00</span>
+              <button class="svc-btn" onclick="quickBook('Botox capilar','R$ 180,00')">Agendar</button>
             </div>
           </div>
 
-          <div class="svc-card reveal">
+          <div class="svc-card reveal" data-service="Penteado" data-price="R$ 100,00">
             <div class="svc-icon"><i class="fas fa-star"></i></div>
             <div class="svc-body">
               <h3>Penteado</h3>
               <p>Penteados exclusivos para ocasiões especiais ou dia a dia, criados sob medida para realçar sua beleza.</p>
             </div>
             <div class="svc-foot">
-              <a href="https://coiffeurleos2.belasis.app/" class="svc-btn" target="_blank" rel="noopener">Agendar</a>
+              <span class="svc-price">R$ 100,00</span>
+              <button class="svc-btn" onclick="quickBook('Penteado','R$ 100,00')">Agendar</button>
             </div>
           </div>
 
@@ -276,9 +283,9 @@
             <h3 class="barber-name">Ana Clara</h3>
             <span class="barber-tag">Colorista Expert</span>
             <p class="barber-desc">Especialista em coloração, mechas e balayage. Ana Clara transforma cabelos com cores vibrantes e precisão técnica que encanta cada cliente.</p>
-            <a href="https://coiffeurleos2.belasis.app/" class="barber-btn" target="_blank" rel="noopener">
+            <a href="#booking" class="barber-btn">
               <i class="fas fa-calendar-check"></i>
-              Agendar com Ana
+              Agendar horário
             </a>
           </div>
 
@@ -290,9 +297,9 @@
             <h3 class="barber-name">Marcos</h3>
             <span class="barber-tag">Corte & Penteado</span>
             <p class="barber-desc">Mestre em cortes femininos e masculinos, Marcos é referência em penteados para eventos especiais e no dia a dia com estilo marcante.</p>
-            <a href="https://coiffeurleos2.belasis.app/" class="barber-btn" target="_blank" rel="noopener">
+            <a href="#booking" class="barber-btn">
               <i class="fas fa-calendar-check"></i>
-              Agendar com Marcos
+              Agendar horário
             </a>
           </div>
 
@@ -304,9 +311,9 @@
             <h3 class="barber-name">Júlia</h3>
             <span class="barber-tag">Tratamentos Capilares</span>
             <p class="barber-desc">Especialista em recuperação capilar, Júlia devolve vida e brilho aos cabelos com hidratação, botox e escova progressiva de alta performance.</p>
-            <a href="https://coiffeurleos2.belasis.app/" class="barber-btn" target="_blank" rel="noopener">
+            <a href="#booking" class="barber-btn">
               <i class="fas fa-calendar-check"></i>
-              Agendar com Júlia
+              Agendar horário
             </a>
           </div>
 
@@ -319,67 +326,58 @@
       <div class="booking-glow"></div>
       <div class="container">
         <div class="section-header reveal">
-          <div class="section-tag">Agendamento online</div>
+          <div class="section-tag">Agendamento</div>
           <h2 class="section-title">Agende seu <em class="accent">horário</em></h2>
-          <p class="section-sub">Simples, rápido e disponível 24 horas por dia</p>
+          <p class="section-sub">Preencha os dados e confirme pelo WhatsApp em segundos</p>
         </div>
-        <div class="booking-layout reveal">
 
-          <div class="booking-steps">
+        <div class="booking-form-wrap reveal">
+          <form id="bookingForm" class="booking-form" onsubmit="submitBooking(event)">
 
-            <div class="bk-step">
-              <div class="bk-step-head">
-                <div class="bk-num">01</div>
-                <div>
-                  <span class="bk-step-title">Escolha o serviço</span>
-                  <span class="bk-step-hint">Corte, coloração, tratamento e muito mais</span>
-                </div>
+            <div class="form-group">
+              <label for="fService">Serviço</label>
+              <select id="fService" class="form-input" required>
+                <option value="">— Escolha o serviço —</option>
+                <option value="Corte feminino|R$ 60,00">Corte feminino — R$ 60,00</option>
+                <option value="Corte masculino|R$ 45,00">Corte masculino — R$ 45,00</option>
+                <option value="Coloração|R$ 150,00">Coloração — R$ 150,00</option>
+                <option value="Mechas & Balayage|R$ 200,00">Mechas &amp; Balayage — R$ 200,00</option>
+                <option value="Escova progressiva|R$ 250,00">Escova progressiva — R$ 250,00</option>
+                <option value="Hidratação capilar|R$ 80,00">Hidratação capilar — R$ 80,00</option>
+                <option value="Botox capilar|R$ 180,00">Botox capilar — R$ 180,00</option>
+                <option value="Penteado|R$ 100,00">Penteado — R$ 100,00</option>
+              </select>
+            </div>
+
+            <div class="form-row-2">
+              <div class="form-group">
+                <label for="fDate">Data</label>
+                <input type="date" id="fDate" class="form-input" required>
+              </div>
+              <div class="form-group">
+                <label for="fTime">Horário</label>
+                <input type="time" id="fTime" class="form-input" required min="09:00" max="19:00">
               </div>
             </div>
 
-            <div class="bk-sep"></div>
-
-            <div class="bk-step">
-              <div class="bk-step-head">
-                <div class="bk-num">02</div>
-                <div>
-                  <span class="bk-step-title">Selecione seu profissional</span>
-                  <span class="bk-step-hint">Escolha o especialista ideal para você</span>
-                </div>
-              </div>
+            <div class="form-group">
+              <label for="fName">Nome completo</label>
+              <input type="text" id="fName" class="form-input" placeholder="Seu nome completo" required autocomplete="name">
             </div>
 
-            <div class="bk-sep"></div>
-
-            <div class="bk-step">
-              <div class="bk-step-head">
-                <div class="bk-num">03</div>
-                <div>
-                  <span class="bk-step-title">Confirme data e horário</span>
-                  <span class="bk-step-hint">Escolha o melhor momento para você</span>
-                </div>
-              </div>
+            <div class="form-group">
+              <label for="fPhone">Número de celular</label>
+              <input type="tel" id="fPhone" class="form-input" placeholder="(11) 99999-9999" required autocomplete="tel">
             </div>
 
-          </div>
+            <button type="submit" class="btn btn-whatsapp btn-lg form-submit">
+              <i class="fab fa-whatsapp"></i>
+              Confirmar agendamento pelo WhatsApp
+            </button>
 
-          <div class="booking-cta">
-            <div class="bk-cta-inner">
-              <div class="bk-cta-icon"><i class="fas fa-calendar-check"></i></div>
-              <h3>Pronto para se transformar?</h3>
-              <p>Agende pelo nosso sistema online em poucos cliques. Rápido, fácil e disponível a qualquer hora.</p>
-              <a href="https://coiffeurleos2.belasis.app/" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
-                <i class="fas fa-calendar-check"></i>
-                Agendar online agora
-              </a>
-              <div class="bk-cta-badge">
-                <i class="fas fa-shield-alt"></i>
-                Agendamento seguro e confirmado
-              </div>
-            </div>
-          </div>
-
+          </form>
         </div>
+
       </div>
     </section>
 
@@ -407,9 +405,9 @@
             <p>Profissionais continuamente treinados e atualizados com as tendências da moda e as mais recentes técnicas do mercado.</p>
           </div>
           <div class="diff-card reveal">
-            <div class="diff-icon"><i class="fas fa-calendar-check"></i></div>
-            <h3>Agendamento 24h</h3>
-            <p>Agende seu horário a qualquer momento pelo nosso sistema online. Sem filas, sem espera, na palma da sua mão.</p>
+            <div class="diff-icon"><i class="fab fa-whatsapp"></i></div>
+            <h3>Agendamento pelo WhatsApp</h3>
+            <p>Agende seu horário diretamente pelo WhatsApp. Rápido, fácil e sem complicação — resposta em minutos.</p>
           </div>
         </div>
       </div>
@@ -422,7 +420,7 @@
           <div class="contact-left reveal">
             <div class="section-tag">Fale conosco</div>
             <h2 class="section-title">Vamos <em class="accent">conversar?</em></h2>
-            <p class="contact-intro">Estamos aqui para te atender. Entre em contato pelo WhatsApp ou agende diretamente pelo nosso sistema online.</p>
+            <p class="contact-intro">Estamos aqui para te atender. Entre em contato pelo WhatsApp ou use o formulário de agendamento acima.</p>
             <div class="contact-items">
               <div class="contact-item">
                 <div class="ci-icon"><i class="fab fa-whatsapp"></i></div>
@@ -438,17 +436,10 @@
                   <span class="ci-value">Segunda a sábado, das 09h às 19h</span>
                 </div>
               </div>
-              <div class="contact-item">
-                <div class="ci-icon"><i class="fas fa-calendar-check"></i></div>
-                <div>
-                  <span class="ci-label">Agendamento online</span>
-                  <a href="https://coiffeurleos2.belasis.app/" class="ci-value" target="_blank" rel="noopener">coiffeurleos2.belasis.app</a>
-                </div>
-              </div>
             </div>
-            <a href="https://coiffeurleos2.belasis.app/" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
-              <i class="fas fa-calendar-check"></i>
-              Agendar online
+            <a href="https://wa.me/5511996185751" class="btn btn-whatsapp btn-lg" target="_blank" rel="noopener">
+              <i class="fab fa-whatsapp"></i>
+              Falar pelo WhatsApp
             </a>
           </div>
           <div class="contact-right reveal">
@@ -471,7 +462,7 @@
                   <span class="cc-closed">Fechado</span>
                 </div>
               </div>
-              <a href="https://coiffeurleos2.belasis.app/" class="btn btn-primary cc-btn" target="_blank" rel="noopener">Agendar agora</a>
+              <a href="#booking" class="btn btn-primary cc-btn">Agendar agora</a>
             </div>
           </div>
         </div>
@@ -528,9 +519,9 @@
 
   <!-- Mobile CTA Bar -->
   <div class="mobile-cta-bar">
-    <a href="https://coiffeurleos2.belasis.app/" class="mobile-cta-bar-btn" target="_blank" rel="noopener">
+    <a href="#booking" class="mobile-cta-bar-btn">
       <i class="fas fa-calendar-check"></i>
-      <span>Agendar online</span>
+      <span>Agendar agora</span>
     </a>
   </div>
 
