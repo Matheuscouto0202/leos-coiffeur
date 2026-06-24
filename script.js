@@ -1,11 +1,6 @@
 /* ============================================================
-   BARBER PRIME CLUB — script.js
+   LÉO'S COIFFEUR — script.js
    ============================================================ */
-
-const WA_NUMBER = '5511996185751';
-
-/* ---- State ---- */
-const state = { barber: '', service: '', price: '' };
 
 /* ============================================================
    HEADER — scroll effect + active nav
@@ -50,7 +45,7 @@ document.querySelectorAll('.mobile-link, .mobile-cta-btn').forEach(el => {
    SCROLL REVEAL — IntersectionObserver
    ============================================================ */
 const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
+  entries.forEach(entry => {
     if (!entry.isIntersecting) return;
     const el = entry.target;
     const delay = parseFloat(el.dataset.delay || 0);
@@ -59,7 +54,7 @@ const revealObserver = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-/* Stagger cards within their grids */
+/* Stagger cards within grids */
 document.querySelectorAll('.services-grid, .barbers-grid, .diff-grid').forEach(grid => {
   grid.querySelectorAll('.reveal').forEach((el, i) => {
     el.dataset.delay = i * 90;
@@ -67,206 +62,6 @@ document.querySelectorAll('.services-grid, .barbers-grid, .diff-grid').forEach(g
 });
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-/* ============================================================
-   SERVICE SELECTION
-   ============================================================ */
-function selectService(name, price) {
-  state.service = name;
-  state.price   = price;
-
-  /* Highlight cards */
-  document.querySelectorAll('.svc-card').forEach(card => {
-    const selected = card.dataset.service === name;
-    card.classList.toggle('selected', selected);
-    const btn = card.querySelector('.svc-btn');
-    if (btn) {
-      btn.textContent = selected ? '✓ Selecionado' : 'Selecionar';
-      btn.classList.toggle('active', selected);
-    }
-  });
-
-  /* Sync dropdown */
-  const sel = document.getElementById('serviceSelect');
-  for (const opt of sel.options) {
-    if (opt.value.startsWith(name + '|')) { sel.value = opt.value; break; }
-  }
-
-  updatePreview();
-  smoothScrollTo('#booking');
-}
-
-/* ============================================================
-   BARBER SELECTION
-   ============================================================ */
-function selectBarber(name) {
-  state.barber = name;
-
-  /* Highlight cards */
-  document.querySelectorAll('.barber-card').forEach(card => {
-    const selected = card.dataset.barber === name;
-    card.classList.toggle('selected', selected);
-    const btn = card.querySelector('.barber-btn');
-    if (btn) {
-      btn.innerHTML = selected
-        ? '<i class="fas fa-check"></i> Selecionado'
-        : '<i class="fas fa-user-check"></i> Selecionar barbeiro';
-      btn.classList.toggle('active', selected);
-    }
-  });
-
-  /* Sync dropdown */
-  document.getElementById('barberSelect').value = name;
-
-  updatePreview();
-  smoothScrollTo('#booking');
-}
-
-/* ============================================================
-   BOOKING DROPDOWNS
-   ============================================================ */
-function onBarberChange(value) {
-  state.barber = value;
-  syncBarberCards(value);
-  updatePreview();
-}
-
-function onServiceChange(value) {
-  if (value) {
-    const [name, price] = value.split('|');
-    state.service = name;
-    state.price   = price;
-  } else {
-    state.service = '';
-    state.price   = '';
-  }
-  syncServiceCards(state.service);
-  updatePreview();
-}
-
-function syncBarberCards(selected) {
-  document.querySelectorAll('.barber-card').forEach(card => {
-    const match = card.dataset.barber === selected;
-    card.classList.toggle('selected', match);
-    const btn = card.querySelector('.barber-btn');
-    if (btn) {
-      btn.innerHTML = match
-        ? '<i class="fas fa-check"></i> Selecionado'
-        : '<i class="fas fa-user-check"></i> Selecionar barbeiro';
-      btn.classList.toggle('active', match);
-    }
-  });
-}
-
-function syncServiceCards(selected) {
-  document.querySelectorAll('.svc-card').forEach(card => {
-    const match = card.dataset.service === selected;
-    card.classList.toggle('selected', match);
-    const btn = card.querySelector('.svc-btn');
-    if (btn) {
-      btn.textContent = match ? '✓ Selecionado' : 'Selecionar';
-      btn.classList.toggle('active', match);
-    }
-  });
-}
-
-/* ============================================================
-   BOOKING PREVIEW
-   ============================================================ */
-function updatePreview() {
-  const el = document.getElementById('bookingPreview');
-  if (!el) return;
-
-  if (state.barber && state.service) {
-    el.classList.add('filled');
-    el.innerHTML = `
-      <div style="line-height:1.9;width:100%">
-        <div style="display:flex;gap:8px;align-items:baseline">
-          <span style="font-size:.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--text3);width:64px;flex-shrink:0">Barbeiro</span>
-          <strong style="color:var(--text)">${state.barber}</strong>
-        </div>
-        <div style="display:flex;gap:8px;align-items:baseline">
-          <span style="font-size:.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--text3);width:64px;flex-shrink:0">Serviço</span>
-          <strong style="color:var(--text)">${state.service}</strong>
-        </div>
-        <div style="display:flex;gap:8px;align-items:baseline">
-          <span style="font-size:.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--text3);width:64px;flex-shrink:0">Valor</span>
-          <strong style="color:var(--accent);font-size:1.1rem">${state.price}</strong>
-        </div>
-      </div>`;
-  } else {
-    el.classList.remove('filled');
-    if (state.barber) {
-      el.innerHTML = `<div class="bk-empty"><i class="fas fa-user-check"></i><span>Barbeiro: <strong>${state.barber}</strong>. Agora selecione o serviço.</span></div>`;
-    } else if (state.service) {
-      el.innerHTML = `<div class="bk-empty"><i class="fas fa-cut"></i><span>Serviço: <strong>${state.service}</strong>. Agora selecione o barbeiro.</span></div>`;
-    } else {
-      el.innerHTML = `<div class="bk-empty"><i class="fas fa-calendar-check"></i><span>Preencha os campos acima para ver o resumo do seu agendamento.</span></div>`;
-    }
-  }
-}
-
-/* ============================================================
-   WHATSAPP — gera mensagem e abre
-   ============================================================ */
-function openWhatsApp() {
-  if (!state.barber || !state.service) {
-    showToast('Selecione um barbeiro e um serviço antes de agendar.');
-    return;
-  }
-
-  const msg =
-    `Olá, vim pelo site da BARBER PRIME CLUB.\n` +
-    `Gostaria de agendar um horário.\n\n` +
-    `Barbeiro escolhido: ${state.barber}\n` +
-    `Serviço escolhido: ${state.service}\n` +
-    `Valor: ${state.price}\n\n` +
-    `Aguardo disponibilidade.`;
-
-  window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
-}
-
-/* ============================================================
-   TOAST NOTIFICATION
-   ============================================================ */
-function showToast(message) {
-  const existing = document.querySelector('.lp-toast');
-  if (existing) existing.remove();
-
-  const toast = document.createElement('div');
-  toast.className = 'lp-toast';
-  toast.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${message}`;
-  toast.style.cssText = `
-    position:fixed; bottom:108px; right:28px; z-index:9999;
-    background:var(--bgcard); border:1px solid var(--border2);
-    color:var(--text); padding:14px 20px; border-radius:var(--radSm);
-    font-family:var(--fBody); font-size:.88rem;
-    display:flex; align-items:center; gap:10px;
-    box-shadow:0 8px 32px rgba(0,0,0,.5);
-    animation:toastIn .3s ease;
-    max-width:300px;
-  `;
-  toast.querySelector('i').style.color = 'var(--accent)';
-
-  if (!document.querySelector('#toast-style')) {
-    const s = document.createElement('style');
-    s.id = 'toast-style';
-    s.textContent = `@keyframes toastIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}`;
-    document.head.appendChild(s);
-  }
-
-  document.body.appendChild(toast);
-  setTimeout(() => { toast.style.opacity='0'; toast.style.transition='opacity .3s'; setTimeout(() => toast.remove(), 300); }, 3500);
-}
-
-/* ============================================================
-   SMOOTH SCROLL HELPER
-   ============================================================ */
-function smoothScrollTo(selector) {
-  const el = document.querySelector(selector);
-  if (!el) return;
-  setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
-}
 
 /* ============================================================
    HERO PARTICLES
@@ -292,24 +87,24 @@ function smoothScrollTo(selector) {
   }
 
   function makeParticle() {
-    const gold  = Math.random() > 0.28;
-    const color = gold ? '#FFB300' : '#ffffff';
+    const gold  = Math.random() > 0.32;
+    const color = gold ? '#C8A96E' : '#f8f4ee';
     const r     = rand(innerR, outerR);
     return {
       angle  : rand(0, Math.PI * 2),
       r,
       baseR  : r,
-      speed  : rand(0.00025, 0.0009) * (Math.random() > 0.5 ? 1 : -1),
-      size   : rand(0.9, 2.6),
-      alpha  : rand(0.25, 0.85),
+      speed  : rand(0.00022, 0.0008) * (Math.random() > 0.5 ? 1 : -1),
+      size   : rand(0.8, 2.4),
+      alpha  : rand(0.2, 0.8),
       aDir   : Math.random() > 0.5 ? 1 : -1,
       aSpeed : rand(0.004, 0.011),
-      aMin   : rand(0.08, 0.3),
-      aMax   : rand(0.55, 1.0),
+      aMin   : rand(0.07, 0.28),
+      aMax   : rand(0.5, 0.95),
       color,
       wobble : rand(0, Math.PI * 2),
-      wobbleS: rand(0.004, 0.014),
-      wobbleA: rand(2, 10),
+      wobbleS: rand(0.004, 0.013),
+      wobbleA: rand(2, 9),
     };
   }
 
@@ -317,7 +112,7 @@ function smoothScrollTo(selector) {
     isMobile = window.innerWidth <= 768;
     resize();
     particles.length = 0;
-    const count = isMobile ? 28 : 62;
+    const count = isMobile ? 28 : 60;
     for (let i = 0; i < count; i++) particles.push(makeParticle());
   }
 
@@ -335,23 +130,21 @@ function smoothScrollTo(selector) {
       const y = cy + Math.sin(p.angle) * r;
 
       if (!isMobile) {
-        /* halo difuso — skipped on mobile (shadowBlur is expensive) */
         ctx.save();
-        ctx.globalAlpha = p.alpha * 0.35;
+        ctx.globalAlpha = p.alpha * 0.32;
         ctx.shadowBlur  = p.size * 8;
         ctx.shadowColor = p.color;
         ctx.beginPath();
-        ctx.arc(x, y, p.size * 2.4, 0, Math.PI * 2);
+        ctx.arc(x, y, p.size * 2.2, 0, Math.PI * 2);
         ctx.fillStyle = p.color;
         ctx.fill();
         ctx.restore();
       }
 
-      /* ponto central */
       ctx.save();
       ctx.globalAlpha = p.alpha;
       if (!isMobile) {
-        ctx.shadowBlur  = p.size * 5;
+        ctx.shadowBlur  = p.size * 4;
         ctx.shadowColor = p.color;
       }
       ctx.beginPath();
@@ -374,5 +167,4 @@ function smoothScrollTo(selector) {
    ============================================================ */
 document.addEventListener('DOMContentLoaded', () => {
   highlightNavLink();
-  updatePreview();
 });
